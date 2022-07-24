@@ -11,7 +11,7 @@ const (
 	gridWidth        = 30
 	gridHeight       = 30
 	screenWidth      = gridWidth * scale
-	screenHeight     = gridWidth * scale
+	screenHeight     = gridHeight * scale
 	startingTickRate = 0.25
 	appleTickLimit   = (gridWidth + gridHeight) * 0.8
 	speedLimit       = 0.060
