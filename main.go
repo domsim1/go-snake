@@ -135,6 +135,9 @@ func update() {
 	dt := rl.GetFrameTime()
 	if snake.isDead {
 		rotation += 60.0 * dt
+		if rotation > 360 {
+			rotation = 0
+		}
 		return
 	}
 
