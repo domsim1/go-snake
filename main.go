@@ -56,13 +56,14 @@ var (
 		X: 0,
 		Y: 0,
 	}
-	vSync   = false
+	vSync   = true
 	showFPS = false
 	apple   *Apple
 )
 
 func main() {
 	rl.InitWindow(screenWidth, screenHeight, "Go Snake")
+	rl.SetTargetFPS(int32(rl.GetMonitorRefreshRate(rl.GetCurrentMonitor())))
 	setup()
 	for !rl.WindowShouldClose() {
 		update()
