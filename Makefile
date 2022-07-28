@@ -1,4 +1,4 @@
 
 .PHONY: snake
-snake:
-	go build -o snake -ldflags="-s -w" main.go
+bin/snake:
+	go build -o bin/snake -ldflags="-s -w" cmd/snake/main.go
