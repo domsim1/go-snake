@@ -209,5 +209,6 @@ func (s *state) Draw() {
 
 	if s.snake.isDead {
 		rl.DrawText(fmt.Sprintf("Final Score: %d", (len(s.snake.body)-2)*scoreMultiplier), internal.Scale/2, internal.Scale*2, internal.Scale*2, rl.White)
+		rl.DrawText("press r to restart", internal.Scale/2, internal.Scale*5, internal.Scale, rl.White)
 	}
 }
