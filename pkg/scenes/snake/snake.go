@@ -2,6 +2,8 @@ package snake
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
 
 	"github.com/domsim1/go-snake/internal"
 	"github.com/domsim1/go-snake/pkg/direction"
@@ -44,13 +46,19 @@ type state struct {
 }
 
 func NewSnakeScene(sm scene.SceneManager) scene.Scene {
+	ex, err := os.Executable()
+	if err != nil {
+		return nil
+	}
+	exPath := filepath.Dir(ex)
+
 	return &state{
 		origin: &rl.Vector2{
 			X: 0,
 			Y: 0,
 		},
 		sm: sm,
-		eatSound: rl.LoadSound("resources/eat.ogg"),
+		eatSound: rl.LoadSound(exPath + "/resources/eat.ogg"),
 		isMuted: false,
 	}
 }
