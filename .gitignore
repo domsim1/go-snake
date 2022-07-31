@@ -1,4 +1,5 @@
-/.vscode
+.vscode
 /bin
-/.DS_Store
-/Snake.app
+.DS_Store
+Snake.app/
+
