@@ -53,4 +53,5 @@ func (s *state) Draw() {
 	rl.DrawText("p    toggle pause", internal.Scale, internal.Scale*13, internal.Scale, rl.White)
 	rl.DrawText("v    toggle vsync", internal.Scale, internal.Scale*14, internal.Scale, rl.White)
 	rl.DrawText("f    toggle fps", internal.Scale, internal.Scale*15, internal.Scale, rl.White)
+	rl.DrawText("m    toggle mute", internal.Scale, internal.Scale*16, internal.Scale, rl.White)
 }

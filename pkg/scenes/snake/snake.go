@@ -39,6 +39,8 @@ type state struct {
 	origin   *rl.Vector2
 	apple    *Apple
 	sm       scene.SceneManager
+	eatSound rl.Sound
+	isMuted  bool
 }
 
 func NewSnakeScene(sm scene.SceneManager) scene.Scene {
@@ -48,6 +50,8 @@ func NewSnakeScene(sm scene.SceneManager) scene.Scene {
 			Y: 0,
 		},
 		sm: sm,
+		eatSound: rl.LoadSound("resources/eat.ogg"),
+		isMuted: false,
 	}
 }
 
@@ -83,6 +87,7 @@ func (s *state) Setup() {
 	}
 	s.rotation = 0.0
 	s.isPaused = false
+	s.isMuted = true
 }
 
 func (s *state) Update() {	
@@ -95,6 +100,9 @@ func (s *state) Update() {
 	}
 	if rl.IsKeyPressed(rl.KeyP) && !s.snake.isDead && rl.IsWindowFocused() {
 		s.isPaused = !s.isPaused
+	}
+	if rl.IsKeyPressed(rl.KeyM) {
+		s.isMuted = !s.isMuted
 	}
 	if s.isPaused && !s.snake.isDead {
 		return
@@ -128,6 +136,10 @@ func (s *state) Update() {
 	s.snake.direction = s.snake.nextDirection
 
 	if s.snake.body[0].X == s.apple.pos.X && s.snake.body[0].Y == s.apple.pos.Y {
+		if !s.isMuted {
+			rl.PlaySound(s.eatSound)
+		}
+
 		s.snake.body = append(s.snake.body, &rl.Vector2{
 			X: s.snake.body[len(s.snake.body)-1].X,
 			Y: s.snake.body[len(s.snake.body)-1].Y,
@@ -223,5 +235,9 @@ func (s *state) Draw() {
 	}
 	if s.isPaused {
 		rl.DrawText("-- paused --", internal.Scale/2, internal.Scale*2, internal.Scale, rl.White)
+	}
+
+	if s.isMuted {
+		rl.DrawText("-- muted --", internal.ScreenWidth - (8*13), 1, internal.Scale, rl.White)
 	}
 }

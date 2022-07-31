@@ -14,6 +14,7 @@ var sm = scene.NewSceneManager()
 func main() {
 	rl.InitWindow(internal.ScreenWidth, internal.ScreenHeight, "Go Snake")
 	rl.SetTargetFPS(int32(rl.GetMonitorRefreshRate(rl.GetCurrentMonitor())))
+	rl.InitAudioDevice()
 
 	sm.Add("snake", snake.NewSnakeScene(sm))
 	sm.Add("title", title.NewTitleScene(sm))
@@ -25,6 +26,7 @@ func main() {
 		draw()
 		rl.EndDrawing()
 	}
+	rl.CloseAudioDevice()
 	rl.CloseWindow()
 }
 
