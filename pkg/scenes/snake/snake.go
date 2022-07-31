@@ -32,6 +32,7 @@ type Snake struct {
 }
 
 type state struct {
+	isPaused bool
 	snake    *Snake
 	rect     *rl.Rectangle
 	rotation float32
@@ -81,9 +82,23 @@ func (s *state) Setup() {
 		ticker: 0,
 	}
 	s.rotation = 0.0
+	s.isPaused = false
 }
 
-func (s *state) Update() {
+func (s *state) Update() {	
+	if rl.IsKeyPressed(rl.KeyR) {
+		s.Setup()
+		return
+	}
+	if !rl.IsWindowFocused() && !s.snake.isDead {
+		s.isPaused = true
+	}
+	if rl.IsKeyPressed(rl.KeyP) && !s.snake.isDead && rl.IsWindowFocused() {
+		s.isPaused = !s.isPaused
+	}
+	if s.isPaused && !s.snake.isDead {
+		return
+	}
 	if rl.IsKeyDown(rl.KeyD) && s.snake.direction != direction.Left {
 		s.snake.nextDirection = direction.Right
 	}
@@ -96,11 +111,6 @@ func (s *state) Update() {
 	if rl.IsKeyDown(rl.KeyS) && s.snake.direction != direction.Up {
 		s.snake.nextDirection = direction.Down
 	}
-	if rl.IsKeyPressed(rl.KeyR) {
-		s.Setup()
-		return
-	}
-
 	dt := rl.GetFrameTime()
 	if s.snake.isDead {
 		s.rotation += 60.0 * dt
@@ -210,5 +220,8 @@ func (s *state) Draw() {
 	if s.snake.isDead {
 		rl.DrawText(fmt.Sprintf("Final Score: %d", (len(s.snake.body)-2)*scoreMultiplier), internal.Scale/2, internal.Scale*2, internal.Scale*2, rl.White)
 		rl.DrawText("press r to restart", internal.Scale/2, internal.Scale*5, internal.Scale, rl.White)
+	}
+	if s.isPaused {
+		rl.DrawText("-- paused --", internal.Scale/2, internal.Scale*2, internal.Scale, rl.White)
 	}
 }

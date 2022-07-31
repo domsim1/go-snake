@@ -50,6 +50,7 @@ func (s *state) Draw() {
 	rl.DrawText("a    move left", internal.Scale, internal.Scale*10, internal.Scale, rl.White)
 	rl.DrawText("d    move right", internal.Scale, internal.Scale*11, internal.Scale, rl.White)
 	rl.DrawText("r    restart", internal.Scale, internal.Scale*12, internal.Scale, rl.White)
-	rl.DrawText("v    toggle vsync", internal.Scale, internal.Scale*13, internal.Scale, rl.White)
-	rl.DrawText("f    toggle fps", internal.Scale, internal.Scale*14, internal.Scale, rl.White)
+	rl.DrawText("p    toggle pause", internal.Scale, internal.Scale*13, internal.Scale, rl.White)
+	rl.DrawText("v    toggle vsync", internal.Scale, internal.Scale*14, internal.Scale, rl.White)
+	rl.DrawText("f    toggle fps", internal.Scale, internal.Scale*15, internal.Scale, rl.White)
 }

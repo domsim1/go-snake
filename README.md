@@ -11,9 +11,11 @@ Snake made in Go with raylib (for fun).
 | s   | Move Down    |
 | d   | Move Right   |
 | r   | Restart Game |
+| p   | Toggle Pause |
 | v   | Toggle VSync |
 | f   | Toggle FPS   |
 
 ## Build
 
 Run `make` to build.
+
