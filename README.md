@@ -14,6 +14,7 @@ Snake made in Go with raylib (for fun).
 | p   | Toggle Pause |
 | v   | Toggle VSync |
 | f   | Toggle FPS   |
+| m   | Toggle Mute  |
 
 ## Build
 
